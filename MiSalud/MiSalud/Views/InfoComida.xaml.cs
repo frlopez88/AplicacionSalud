@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace MiSalud
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace MiSalud.Views
 {
-    public partial class MainPage : TabbedPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class InfoComida : ContentPage
     {
-        public MainPage()
+        public InfoComida()
         {
             InitializeComponent();
         }
