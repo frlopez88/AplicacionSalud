@@ -2,12 +2,45 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MiSalud.Views.InfoPersona"
+             xmlns:local ="clr-namespace:MiSalud.ViewModels"
              IconImageSource="user.png">
+
+    <ContentPage.BindingContext>
+
+        <local:ViewModelPersona></local:ViewModelPersona>
+        
+    </ContentPage.BindingContext>
+
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Personas"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Image Source="https://sites.google.com/site/ceutecsap01/_/rsrc/1441668710669/ceutec-logo/cuetce.jpg"></Image>
+            
+            <Label Text="Nombre"></Label>
+            <Entry Text="{Binding Nombre}" Keyboard="Text"></Entry>
+
+            <Label Text="Fecha de Nacimiento"></Label>
+            <DatePicker Date="{Binding Fecha_Nacimiento}" ></DatePicker>
+
+            <Label Text="Genero"></Label>
+            <Picker SelectedItem="{Binding Genero}" Title="Seleccione Genero"
+                    TitleColor="Black">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Masculino</x:String>
+                        <x:String>Femenino</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Peso"></Label>
+            <Entry Text="{Binding Peso}" Keyboard="Numeric" ></Entry>
+
+            <Label Text="Altura"></Label>
+            <Entry Text="{Binding Altura}" Keyboard="Numeric" ></Entry>
+
+            <Button Text="Guardar" Command="{Binding CrearPersona}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

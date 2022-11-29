@@ -5,9 +5,31 @@
              IconImageSource="correr.png">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Ejercicios"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Picker Title="Seleccione Actvidad"
+                    TitleColor="Black">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Correr</x:String>
+                        <x:String>Caminar</x:String>
+                        <x:String>Boxeo</x:String>
+                        <x:String>Taekwondoe</x:String>
+                        <x:String>Nadar</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Fecha de Actividad"></Label>
+            <DatePicker></DatePicker>
+            
+            <Label Text="Hora Inicio"/>
+            <TimePicker></TimePicker>
+
+            <Label Text="Hora Fin"/>
+            <TimePicker></TimePicker>
+
+            <Button Text="Guardar"></Button>
         </StackLayout>
     </ContentPage.Content>
+    
 </ContentPage>

@@ -6,9 +6,16 @@
              >
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Comidas"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Nombre Plato"></Label>
+            <Entry></Entry>
+
+            <Label Text="Calorias"></Label>
+            <Entry Keyboard="Numeric"/>
+
+            <Label Text="Fecha Comida"/>
+            <DatePicker></DatePicker>
+
+            <Button Text="Guardar"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
