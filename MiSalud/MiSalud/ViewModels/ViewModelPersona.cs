@@ -13,9 +13,12 @@ namespace MiSalud.ViewModels
     {
         public ViewModelPersona() {
 
+            AbrirArchivo();
+
+
             CrearPersona = new Command( ()=> {
 
-                Persona p = new Persona() { 
+                 p = new Persona() { 
                 
                     nombre = this.nombre, 
                     fecha_nacimiento = this.fecha_nacimiento, 
@@ -24,22 +27,51 @@ namespace MiSalud.ViewModels
                     altura = this.altura
                         
                 };
-
+                //Rutina de Serializacion
                 BinaryFormatter formatter = new BinaryFormatter();
-                string ruta = Path.Combine(
-                    System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal)  ,
-                    "persona.aut");
-
-                Stream archivo = new FileStream( ruta, FileMode.Create, FileAccess.Write, FileShare.None  )  ;
+                string ruta = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
+                    "info.aut");
+                Stream archivo = new FileStream(ruta, FileMode.Create, FileAccess.Write, FileShare.None);
                 formatter.Serialize(archivo, p);
                 archivo.Close();
-            
+
             } );
         
         
         }
-        
-        
+
+        private void AbrirArchivo() {
+            
+            // Es una estructura 
+
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                string ruta = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
+                    "info.aut");
+                Stream archivo = new FileStream(ruta, FileMode.Open, FileAccess.Read, FileShare.None);
+
+                p = (Persona)formatter.Deserialize(archivo);
+                archivo.Close();
+
+                Nombre = p.nombre;
+                Fecha_Nacimiento = p.fecha_nacimiento;
+                Genero = p.genero;
+                Peso = p.peso_lbs;
+                Altura = p.altura;
+            }
+            catch (Exception e) 
+            {
+            
+                
+            }
+
+            
+
+        }
+
+        Persona p = new Persona();
+
         string nombre;
 
         public string Nombre {
