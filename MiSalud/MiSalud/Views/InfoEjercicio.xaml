@@ -2,12 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MiSalud.Views.InfoEjercicio"
+             xmlns:local="clr-namespace:MiSalud.ViewModels"
              IconImageSource="correr.png">
+
+    <ContentPage.BindingContext>
+        <local:ViewModelEjercicio></local:ViewModelEjercicio>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
 
             <Picker Title="Seleccione Actvidad"
-                    TitleColor="Black">
+                    TitleColor="Black"  SelectedItem="{Binding Actividad}">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Correr</x:String>
@@ -20,15 +26,17 @@
             </Picker>
 
             <Label Text="Fecha de Actividad"></Label>
-            <DatePicker></DatePicker>
+            <DatePicker MinimumDate="{Binding FechaMin}"  Date="{Binding FechaActividad}" ></DatePicker>
             
             <Label Text="Hora Inicio"/>
-            <TimePicker></TimePicker>
+            <TimePicker Time="{Binding HoraInicio}" ></TimePicker>
 
             <Label Text="Hora Fin"/>
-            <TimePicker></TimePicker>
+            <TimePicker Time="{Binding HoraFin}"></TimePicker>
 
-            <Button Text="Guardar"></Button>
+            <Button Text="Guardar" Command="{Binding GuardarEjercicio}"></Button>
+
+            <Label Text="{Binding Resultado}"  />
         </StackLayout>
     </ContentPage.Content>
     
