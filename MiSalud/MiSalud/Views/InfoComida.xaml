@@ -3,19 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MiSalud.Views.InfoComida"
              IconImageSource="comida.png"
+             xmlns:local ="clr-namespace:MiSalud.ViewModels"
              >
+
+    <ContentPage.BindingContext>
+
+        <local:ViewModelComida></local:ViewModelComida>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Nombre Plato"></Label>
-            <Entry></Entry>
-
-            <Label Text="Calorias"></Label>
-            <Entry Keyboard="Numeric"/>
+            
+            <Picker Title="Seleccione Comida"
+                    TitleColor="Black"  SelectedItem="{Binding Plato}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Pizza</x:String>
+                        <x:String>Hamburguesa</x:String>
+                        <x:String>Ensalada</x:String>
+                        <x:String>Licuado</x:String>
+                        <x:String>Mandarina</x:String>
+                        <x:String>Banano</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
             <Label Text="Fecha Comida"/>
-            <DatePicker></DatePicker>
+            <DatePicker MinimumDate="{Binding FechaMin}" Date="{Binding FechaComida}" ></DatePicker>
 
-            <Button Text="Guardar"></Button>
+            <Button Text="Guardar" Command="{Binding CrearComida}" ></Button>
+
+            <Label Text="{Binding Resultado}"  />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
